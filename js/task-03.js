@@ -16,34 +16,12 @@ const images = [
   },
 ];
 
-// const galleryElement = document.getElementById('gallery');
-// images.forEach(image => {
-//   gallery.insertAdjacentHTML(
-//     'beforeend',
-//     `<li>
-//       <img
-//       alt="${image.alt}"
-//       src="${image.url}"
-//       height="300px"
-//       width="400px"/>
-//     </li>`,
-//   );
-// });
-
-// let galleryElement = (arr, id) => {
-//   let ul = document.getElementById(id);
-//   let galleryListItem = arr =>
-//     arr.map(item => {
-//       let li = document.createElement('li');
-//       li.insertAdjacentHTML(
-//         'beforeend',
-//         `<img src=${item.url} alt=${item.alt} class="gallery-img">`,
-//       );
-//       li.className = 'gallery-item';
-//       ul.appendChild(li);
-//     });
-//   galleryListItem(arr);
-//   document.body.appendChild(ul);
-// };
-
-// galleryElement(images, 'gallery');
+const createGalleryItem = ({ url, alt }) =>
+  `<li><img src="${url}" alt="${alt}" width = 450 height = 300></li>`;
+const galleryMarkup = images.reduce(
+  (acc, item) => acc + createGalleryItem(item),
+  '',
+);
+const galleryList = document.querySelector('#gallery');
+galleryList.insertAdjacentHTML('afterbegin', galleryMarkup);
+galleryList.setAttribute('style', 'list-style-type:none; display: flex;');
